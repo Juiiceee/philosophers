@@ -1,0 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checkarg.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/12 12:41:05 by lbehr             #+#    #+#             */
+/*   Updated: 2024/02/12 14:49:09 by lbehr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philo.h"
+
+int	checkdigit(char **str)
+{
+	int	j;
+	int	i;
+
+	i = 1;
+	while (str[i])
+	{
+		j = 0;
+		if (str[i][j] == '-' || str[i][j] == '\0')
+			return (-1);
+		while (str[i][j])
+		{
+			if (!(str[i][j] >= '0' && str[i][j] <= '9'))
+				return (-1);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	ft_atoi(char *str)
+{
+	int	cmp;
+	int	signe;
+
+	signe = 1;
+	cmp = 0;
+	while (*str)
+	{
+		if (*str == '-' || *str == '+')
+		{
+			if (*str == '-')
+				signe = -1;
+			str++;
+		}
+		cmp = cmp * 10 + *str - '0';
+		str++;
+	}
+	return (signe * cmp);
+}
+
+int	checkarg(char **argv, t_philo *philo, int argc)
+{
+	if (checkdigit(argv) == -1 || !(argc >= 5 && argc <= 6))
+		return (-1);
+	if (argc == 6)
+		philo->nbmusteat = ft_atoi(argv[5]);
+	else
+		philo->nbmusteat = -1;
+	philo->nbphilo = ft_atoi(argv[1]);
+	philo->timedie = ft_atoi(argv[2]);
+	philo->timeeat = ft_atoi(argv[3]);
+	philo->timesleep = ft_atoi(argv[4]);
+	return (1);
+}
