@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:41:05 by lbehr             #+#    #+#             */
-/*   Updated: 2024/02/12 14:49:09 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/02/12 15:14:19 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,13 @@ int	checkarg(char **argv, t_philo *philo, int argc)
 {
 	if (checkdigit(argv) == -1 || !(argc >= 5 && argc <= 6))
 		return (-1);
-	if (argc == 6)
+	if (argc == 6 && ft_atoi(argv[5]) > 0)
 		philo->nbmusteat = ft_atoi(argv[5]);
 	else
 		philo->nbmusteat = -1;
+	if (!(ft_atoi(argv[1]) > 0 && ft_atoi(argv[1]) <= 200)
+	&& ft_atoi(argv[2]) > 0 && ft_atoi(argv[3]) > 0 && ft_atoi(argv[4]) > 0)
+		return (-1);
 	philo->nbphilo = ft_atoi(argv[1]);
 	philo->timedie = ft_atoi(argv[2]);
 	philo->timeeat = ft_atoi(argv[3]);
