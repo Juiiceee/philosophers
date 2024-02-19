@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:38:29 by lbehr             #+#    #+#             */
-/*   Updated: 2024/02/12 15:15:13 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/02/15 11:07:05 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int main(int argc, char **argv)
 {
 	t_philo	philo;
 
-	//char	*test[] = {"salut", "48585", "4878", "4859", "4859", NULL};
 	if (checkarg(argv, &philo, argc) == -1)
 		return (0);
 }
