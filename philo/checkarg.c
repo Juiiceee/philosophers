@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:41:05 by lbehr             #+#    #+#             */
-/*   Updated: 2024/02/12 15:14:19 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/03/06 17:10:12 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,20 @@ int	ft_atoi(char *str)
 	return (signe * cmp);
 }
 
-int	checkarg(char **argv, t_philo *philo, int argc)
+int	checkarg(char **argv, t_all *all, int argc)
 {
-	if (checkdigit(argv) == -1 || !(argc >= 5 && argc <= 6))
-		return (-1);
+	if (checkdigit(argv) == -1 || !(argc == 5 || argc == 6))
+		return (1);
 	if (argc == 6 && ft_atoi(argv[5]) > 0)
-		philo->nbmusteat = ft_atoi(argv[5]);
+		all->nbmusteat = ft_atoi(argv[5]);
 	else
-		philo->nbmusteat = -1;
+		all->nbmusteat = -1;
 	if (!(ft_atoi(argv[1]) > 0 && ft_atoi(argv[1]) <= 200)
 	&& ft_atoi(argv[2]) > 0 && ft_atoi(argv[3]) > 0 && ft_atoi(argv[4]) > 0)
-		return (-1);
-	philo->nbphilo = ft_atoi(argv[1]);
-	philo->timedie = ft_atoi(argv[2]);
-	philo->timeeat = ft_atoi(argv[3]);
-	philo->timesleep = ft_atoi(argv[4]);
-	return (1);
+		return (1);
+	all->nbphilo = ft_atoi(argv[1]);
+	all->timedie = ft_atoi(argv[2]);
+	all->timeeat = ft_atoi(argv[3]);
+	all->timesleep = ft_atoi(argv[4]);
+	return (0);
 }
