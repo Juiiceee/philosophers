@@ -16,7 +16,7 @@ norm	:
 
 $(NAME)	:	$(OBJS)
 	$(DIR_DUP)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS) -lpthread -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	$(DIR_DUP)

@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:53:07 by lbehr             #+#    #+#             */
-/*   Updated: 2024/03/06 17:55:06 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/01 14:10:56 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@ int	create(t_all *all)
 	i = 0;
 	while (i < all->nbphilo)
 	{
-		printf("%d\n",i);
-		pthread_create(&all->philo[i].idthread, NULL, routine, &all->philo[i]);
+		if (pthread_create(&(all->philo[i].idthread), NULL, routine, &(all->philo[i])))
+		{
+			printf("Erreur lors de la création du thread %d\n", i);
+			return 1;
+		}
 		i++;
 	}
 	i = 0;
 	while (i < all->nbphilo)
 	{
-		pthread_join(all->philo->idthread, NULL);
+		pthread_join(all->philo[i].idthread, NULL);
 		i++;
 	}
-	pthread_mutex_destroy(&all->print);
+	deletemutex(all);
 	return (0);
 }
