@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:41:09 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/01 14:10:46 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/02 14:17:50 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,38 @@
 
 # include <stdio.h>
 # include <pthread.h>
+# include <unistd.h>
+# include <sys/time.h>
 
+typedef enum e_bool
+{
+	false,
+	true
+}	t_bool;
 
 typedef struct s_philo
 {
-	int	id;
-	int	forkg;
-	int	forkd;
+	int				id;
+	int				forkg;
+	int				forkd;
 	pthread_t		idthread;
+	long long		lasteat;
 	struct s_all	*all;
 }	t_philo;
 
 typedef struct s_all
 {
-	int	nbphilo;
-	int	timedie;
-	int	timeeat;
-	int	timesleep;
-	int	nbmusteat;
-	int	oui;
+	int				nbphilo;
+	int				timedie;
+	int				timeeat;
+	int				timesleep;
+	int				nbmusteat;
+	long long		time;
+	t_bool			mort;
+	pthread_mutex_t	eat;
 	pthread_mutex_t	forkmutex[225];
 	pthread_mutex_t	print;
-	t_philo	philo[225];
+	t_philo			philo[225];
 }	t_all;
 
 
@@ -52,10 +62,13 @@ void	deletemutex(t_all *all);
 
 //routine.c
 void	*routine(void *content);
-void* printID(void* threadID);
+void	eat(t_philo *philo);
+void	print(t_philo *philo, char *string);
 
 //create.c
 int	create(t_all *all);
 
+//utils.c
+long long	timestamp(void);
 
 #endif

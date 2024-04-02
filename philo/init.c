@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:45:58 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/01 14:10:35 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/02 14:18:18 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	initmutex(t_all *all)
 		i++;
 	}
 	pthread_mutex_init(&all->print, NULL);
+	pthread_mutex_init(&all->eat, NULL);
 }
 
 void	initphi(t_all *all)
@@ -30,7 +31,7 @@ void	initphi(t_all *all)
 	int	i;
 
 	i = 0;
-	all->oui = 0;
+	all->mort = false;
 	while (i < all->nbphilo)
 	{
 		all->philo[i].all = all;
@@ -54,4 +55,5 @@ void	deletemutex(t_all *all)
 		i++;
 	}
 	pthread_mutex_destroy(&all->print);
+	pthread_mutex_destroy(&all->eat);
 }

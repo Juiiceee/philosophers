@@ -1,6 +1,6 @@
 NAME		:= philo
 OBJ_DIR		:= obj
-SRCS		:= checkarg.c main.c create.c init.c routine.c
+SRCS		:= checkarg.c create.c init.c main.c routine.c utils.c
 SRCS		:= $(SRCS:%=%)
 OBJS		:= $(SRCS:%.c=$(OBJ_DIR)/%.o)
 CC			:= cc
