@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:41:05 by lbehr             #+#    #+#             */
-/*   Updated: 2024/03/06 17:10:12 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/03 14:56:30 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	checkdigit(char **str)
 	return (1);
 }
 
-int	ft_atoi(char *str)
+long long	ft_atoi(char *str)
 {
-	int	cmp;
-	int	signe;
+	long long	cmp;
+	long long	signe;
 
 	signe = 1;
 	cmp = 0;

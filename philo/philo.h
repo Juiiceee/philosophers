@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:41:09 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/02 14:17:50 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/03 14:56:57 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ typedef struct s_philo
 typedef struct s_all
 {
 	int				nbphilo;
-	int				timedie;
-	int				timeeat;
-	int				timesleep;
+	long long		timedie;
+	long long		timeeat;
+	long long		timesleep;
 	int				nbmusteat;
 	long long		time;
 	t_bool			mort;
@@ -53,7 +53,7 @@ typedef struct s_all
 //checkarg.c
 int		checkarg(char **argv, t_all *all, int argc);
 int		checkdigit(char **str);
-int		ft_atoi(char *str);
+long long	ft_atoi(char *str);
 
 //init.c
 void	initphi(t_all *all);
@@ -64,6 +64,7 @@ void	deletemutex(t_all *all);
 void	*routine(void *content);
 void	eat(t_philo *philo);
 void	print(t_philo *philo, char *string);
+void	sleepo(long long time, t_all *all);
 
 //create.c
 int	create(t_all *all);
