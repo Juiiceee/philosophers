@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:45:58 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/02 14:18:18 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/04 14:24:55 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	initphi(t_all *all)
 		all->philo[i].all = all;
 		all->philo[i].id = i;
 		all->philo[i].forkg = i;
+		all->philo[i].nbeat = 0;
 		if (i == 0)
 			all->philo[i].forkd = all->nbphilo - 1;
 		else

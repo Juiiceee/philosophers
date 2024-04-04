@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:41:09 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/03 14:56:57 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/04 14:33:56 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_philo
 	int				id;
 	int				forkg;
 	int				forkd;
+	int				nbeat;
 	pthread_t		idthread;
 	long long		lasteat;
 	struct s_all	*all;
@@ -51,23 +52,23 @@ typedef struct s_all
 
 
 //checkarg.c
-int		checkarg(char **argv, t_all *all, int argc);
-int		checkdigit(char **str);
+int			checkarg(char **argv, t_all *all, int argc);
+int			checkdigit(char **str);
 long long	ft_atoi(char *str);
 
 //init.c
-void	initphi(t_all *all);
-void	initmutex(t_all *all);
-void	deletemutex(t_all *all);
+void		initphi(t_all *all);
+void		initmutex(t_all *all);
+void		deletemutex(t_all *all);
 
 //routine.c
-void	*routine(void *content);
-void	eat(t_philo *philo);
-void	print(t_philo *philo, char *string);
-void	sleepo(long long time, t_all *all);
+void		*routine(void *content);
+void		eat(t_philo *philo);
+void		print(t_philo *philo, char *string);
+void		sleepo(long long time, t_all *all);
 
 //create.c
-int	create(t_all *all);
+int			create(t_all *all);
 
 //utils.c
 long long	timestamp(void);
