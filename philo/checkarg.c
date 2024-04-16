@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:41:05 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/03 14:56:30 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/16 16:54:14 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int	checkarg(char **argv, t_all *all, int argc)
 	else
 		all->nbmusteat = -1;
 	if (!(ft_atoi(argv[1]) > 0 && ft_atoi(argv[1]) <= 200)
-	&& ft_atoi(argv[2]) > 0 && ft_atoi(argv[3]) > 0 && ft_atoi(argv[4]) > 0)
+		&& ft_atoi(argv[2]) > 0 && ft_atoi(argv[3]) > 0
+		&& ft_atoi(argv[4]) > 0)
 		return (1);
 	all->nbphilo = ft_atoi(argv[1]);
 	all->timedie = ft_atoi(argv[2]);

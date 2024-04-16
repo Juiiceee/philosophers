@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:15:28 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/04 14:56:32 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/16 09:14:52 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	*routine(void *content)
 	philo = (t_philo *)content;
 	all = philo->all;
 	if (philo->id % 2)
-		usleep(15000);
+		usleep(10000);
 	while (all->mort == false)
 	{
 		eat(philo);
-		if (philo->nbeat >= all->nbmusteat)
+		if (philo->nbeat >= all->nbmusteat && all->nbmusteat != -1)
 			return (NULL);
 		print(philo, "is sleeping");
 		sleepo(all->timesleep, all);
@@ -39,7 +39,7 @@ void	sleepo(long long time, t_all *all)
 
 	first = timestamp();
 	while ((timestamp() - first) < time && all->mort == false)
-			usleep(50);
+		usleep(50);
 }
 
 void	eat(t_philo *philo)

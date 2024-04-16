@@ -4,15 +4,12 @@ SRCS		:= checkarg.c create.c init.c main.c routine.c utils.c
 SRCS		:= $(SRCS:%=%)
 OBJS		:= $(SRCS:%.c=$(OBJ_DIR)/%.o)
 CC			:= cc
-#NORM		:= norminette *.c *.h
 CFLAGS		:= -Wall -Wextra -Werror -g3
+CPPFLAGS	:= -MMD -MP -I include
 RM			:= rm -rf
 DIR_DUP		= mkdir -p $(@D)
 
-all		: norm $(NAME)
-
-norm	:
-	$(NORM)
+all		: $(NAME)
 
 $(NAME)	:	$(OBJS)
 	$(DIR_DUP)
@@ -20,15 +17,16 @@ $(NAME)	:	$(OBJS)
 
 $(OBJ_DIR)/%.o: %.c
 	$(DIR_DUP)
-	$(CC) -c $< $(CFLAGS) -o $@
+	$(CC) -c $< $(CFLAGS) $(CPPFLAGS) -o $@
+
+-include $(DEPS)
 
 clean	:
-	$(RM) $(OBJS)
 	$(RM) $(OBJ_DIR)
 
 fclean	:	clean
-	$(RM) bin
+	$(RM) $(NAME)
 
 re		:	fclean all
 
-.PHONY: all clean fclean re norm
+.PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:45:58 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/04 14:24:55 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/16 17:11:03 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	initmutex(t_all *all)
 
 	i = 0;
 	while (i < all->nbphilo)
-	{
-		pthread_mutex_init(&all->forkmutex[i], NULL);
-		i++;
-	}
+		pthread_mutex_init(&all->forkmutex[i++], NULL);
 	pthread_mutex_init(&all->print, NULL);
 	pthread_mutex_init(&all->eat, NULL);
 }
@@ -32,6 +29,7 @@ void	initphi(t_all *all)
 
 	i = 0;
 	all->mort = false;
+	all->tousmangez = false;
 	while (i < all->nbphilo)
 	{
 		all->philo[i].all = all;
@@ -47,14 +45,12 @@ void	initphi(t_all *all)
 }
 
 void	deletemutex(t_all *all)
-{	int	i;
+{
+	int	i;
 
 	i = 0;
 	while (i < all->nbphilo)
-	{
-		pthread_mutex_destroy(&all->forkmutex[i]);
-		i++;
-	}
+		pthread_mutex_destroy(&all->forkmutex[i++]);
 	pthread_mutex_destroy(&all->print);
 	pthread_mutex_destroy(&all->eat);
 }

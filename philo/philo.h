@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:41:09 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/04 14:33:56 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/16 17:04:24 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ typedef struct s_all
 	int				nbmusteat;
 	long long		time;
 	t_bool			mort;
+	t_bool			tousmangez;
 	pthread_mutex_t	eat;
 	pthread_mutex_t	forkmutex[225];
 	pthread_mutex_t	print;
 	t_philo			philo[225];
 }	t_all;
-
 
 //checkarg.c
 int			checkarg(char **argv, t_all *all, int argc);
