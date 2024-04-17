@@ -1,1 +1,1 @@
-<h1>Philo
+<h1>Philosophers
