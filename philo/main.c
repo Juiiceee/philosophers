@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:38:29 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/16 17:07:05 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/17 10:25:00 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 int	main(int argc, char **argv)
 {
 	t_all	all;
+	int		erreur;
 
-	if (checkarg(argv, &all, argc))
+	erreur = checkarg(argv, &all, argc);
+	if (erreur == 1)
 		return (1);
+	else if (erreur == 2)
+		return (0);
 	initphi(&all);
 	initmutex(&all);
 	create(&all);

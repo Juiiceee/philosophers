@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:41:09 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/16 17:04:24 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/17 17:02:47 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ typedef struct s_all
 	long long		time;
 	t_bool			mort;
 	t_bool			tousmangez;
+	pthread_mutex_t	nbeat;
+	pthread_mutex_t	death;
+	pthread_mutex_t	timemu;
 	pthread_mutex_t	eat;
 	pthread_mutex_t	forkmutex[225];
 	pthread_mutex_t	print;
