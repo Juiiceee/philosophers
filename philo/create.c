@@ -6,11 +6,24 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:53:07 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/17 17:03:48 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/18 13:32:23 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static	void	suite(t_all *all)
+{
+	int	i;
+
+	i = 0;
+	pthread_mutex_lock(&all->nbeat);
+	while (i < all->nbphilo && all->philo[i].nbeat == all->nbmusteat)
+		i++;
+	pthread_mutex_unlock(&all->nbeat);
+	if (i == all->nbphilo)
+		all->tousmangez = true;
+}
 
 static	void	checkeatslachdeath(t_all *all)
 {
@@ -34,13 +47,7 @@ static	void	checkeatslachdeath(t_all *all)
 		}
 		if (all->mort)
 			break ;
-		i = 0;
-		pthread_mutex_lock(&all->nbeat);
-		while (i < all->nbphilo && all->philo[i].nbeat == all->nbmusteat)
-			i++;
-		pthread_mutex_unlock(&all->nbeat);
-		if (i == all->nbphilo)
-			all->tousmangez = true;
+		suite(all);
 	}
 }
 

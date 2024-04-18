@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:41:05 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/17 10:27:14 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/18 13:12:48 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,6 @@ int	checkarg(char **argv, t_all *all, int argc)
 	all->nbphilo = ft_atoi(argv[1]);
 	all->timedie = ft_atoi(argv[2]);
 	all->mort = false;
-	if (all->nbphilo == 1)
-		return (printf("0 0 has taken a fork\n"), sleepo(all->timedie, all),
-			printf("%lld 0 died\n", all->timedie), 2);
 	all->timeeat = ft_atoi(argv[3]);
 	all->timesleep = ft_atoi(argv[4]);
 	return (0);

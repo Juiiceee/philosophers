@@ -6,7 +6,7 @@
 /*   By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:15:28 by lbehr             #+#    #+#             */
-/*   Updated: 2024/04/18 11:11:10 by lbehr            ###   ########.fr       */
+/*   Updated: 2024/04/18 13:27:01 by lbehr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	*routine(void *content)
 	{
 		pthread_mutex_unlock(&all->death);
 		eat(philo);
-		if (philo->nbeat >= all->nbmusteat && all->nbmusteat != -1)
+		if ((philo->nbeat >= all->nbmusteat && all->nbmusteat != -1)
+			|| all->nbphilo == 1)
 			return (NULL);
 		print(philo, "is sleeping");
 		sleepo(all->timesleep, all);
@@ -59,6 +60,8 @@ void	eat(t_philo *philo)
 	all = philo->all;
 	pthread_mutex_lock(&all->forkmutex[philo->forkg]);
 	print(philo, "has taken a fork");
+	if (all->nbphilo == 1)
+		return ;
 	pthread_mutex_lock(&all->forkmutex[philo->forkd]);
 	print(philo, "has taken a fork");
 	pthread_mutex_lock(&all->eat);
@@ -85,7 +88,7 @@ void	print(t_philo *philo, char *string)
 	pthread_mutex_lock(&all->print);
 	pthread_mutex_lock(&all->death);
 	if (all->mort == false)
-		printf("%lld %d %s\n", time, philo->id, string);
+		printf("%lld %d %s\n", time, philo->id + 1, string);
 	pthread_mutex_unlock(&all->death);
 	pthread_mutex_unlock(&all->print);
 }
